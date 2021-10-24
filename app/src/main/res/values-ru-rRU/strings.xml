@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Мессенджер</string>
+
+    <string name="sig_in">Авторизация</string>
+    <string name="registration">Регистрация</string>
+
     <string name="exit">Выход</string>
     <string name="user_account">Профиль</string>
+    <string name="hint_email">"Эл. почта"</string>
+    <string name="hint_password">Пароль</string>
 </resources>

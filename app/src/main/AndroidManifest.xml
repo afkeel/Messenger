@@ -10,10 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Messenger">
         <activity
-            android:name=".view.activities.CActivityUserAccount"
-            android:exported="true" />
-        <activity
-            android:name=".view.activities.CActivityMessagesList"
+            android:name=".view.activities.CActivitySignIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.activities.CActivityUserAccount"
+            android:exported="true" />
+        <activity
+            android:name=".view.activities.CActivityMessagesList"
+            android:exported="true"/>
     </application>
 
 </manifest>
