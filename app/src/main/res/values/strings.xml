@@ -3,12 +3,18 @@
 
     <string name="sig_in">Sign In</string>
     <string name="registration">Registration</string>
-
-    <string name="exit">Exit</string>
-    <string name="user_account">Account</string>
     <string name="hint_email">E-mail</string>
     <string name="hint_password">Password</string>
 
+    <string name="exit">Exit</string>
+    <string name="user_account">Account</string>
+
+    <string name="send_message">Send</string>
+    <string name="hint_enter_message">Enter message</string>
+
     <string name="file_name_preferences" translatable="false">Preferences</string>
     <string name="param_login_key" translatable="false">LOGIN</string>
+
+    <string name="edit_mesage">Edit</string>
+    <string name="delete_message">Delete</string>
 </resources>

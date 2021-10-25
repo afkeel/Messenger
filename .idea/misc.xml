@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/AndroidLessons/Messenger/app/src/main/res/layout/activity_csign_in.xml" value="0.27447916666666666" />
-        <entry key="..\:/AndroidStudioProjects/AndroidLessons/Messenger/app/src/main/res/layout/activity_messages_list.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/AndroidLessons/Messenger/app/src/main/res/layout/activity_messages_list.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/AndroidLessons/Messenger/app/src/main/res/layout/activity_sign_in.xml" value="0.27447916666666666" />
         <entry key="..\:/AndroidStudioProjects/AndroidLessons/Messenger/app/src/main/res/layout/activity_user_account.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/AndroidLessons/Messenger/app/src/main/res/layout/messages_list_item.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/AndroidLessons/Messenger/app/src/main/res/layout/messeges_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/AndroidLessons/Messenger/app/src/main/res/menu/activity_messages_list_bottom_menu.xml" value="0.27447916666666666" />
+        <entry key="..\:/AndroidStudioProjects/AndroidLessons/Messenger/app/src/main/res/menu/activity_messages_list_item_menu.xml" value="0.26927083333333335" />
         <entry key="..\:/AndroidStudioProjects/AndroidLessons/Messenger/app/src/main/res/menu/activity_messages_list_menu.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/AndroidLessons/Messenger/app/src/main/res/menu/activity_messeges_list_menu.xml" value="0.36666666666666664" />
       </map>
