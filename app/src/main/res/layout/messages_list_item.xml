@@ -22,14 +22,15 @@
         android:layout_toEndOf="@+id/ivUserIcon"
         android:layout_alignParentTop="true"
         android:textSize="26sp"/>
+
     <TextView
         android:id="@+id/tvMsgContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextTextTextTextTextTextTextTextTextTextTextText"
-        android:layout_toEndOf="@+id/ivUserIcon"
         android:layout_below="@+id/tvMsgUserName"
-        android:textSize="20sp"/>
+        android:layout_toEndOf="@+id/ivUserIcon"
+        android:text="TextTextTextTextTextTextTextTextTextTextTextText"
+        android:textSize="20sp" />
     <TextView
         android:id="@+id/tvMsgDateTime"
         android:layout_width="wrap_content"

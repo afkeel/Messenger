@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/imiEditMessage"
+        android:id="@+id/miContextEditMessage"
         android:title="@string/edit_mesage"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/imiDeleteMessage"
+        android:id="@+id/miContextDeleteMessage"
         android:title="@string/delete_message"
         app:showAsAction="never"/>
 </menu>

@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import org.joda.time.LocalDateTime
 import java.util.*
 
-@Entity(tableName = "messages")
+@Entity(tableName = "post")
 class CMessage (
     @PrimaryKey var id: UUID,
     @ColumnInfo(name = "user_name") var userName: String,

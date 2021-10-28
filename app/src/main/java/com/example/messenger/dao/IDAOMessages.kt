@@ -8,21 +8,21 @@ import java.util.*
 @Dao
 interface IDAOLessons {
 
-    @Query("SELECT * FROM messages")
+    @Query("SELECT * FROM post")
     suspend fun getAll(): List<CMessage>
 
-    @Query("SELECT * FROM messages")
+    @Query("SELECT * FROM post")
     fun getAllFlow(): Flow<List<CMessage>>
 
-    @Query("SELECT * FROM messages WHERE id = :first")
+    @Query("SELECT * FROM post WHERE id = :first")
     suspend fun findByName(first: UUID): CMessage
 
     @Insert
-    suspend fun insert(lesson: CMessage)
+    suspend fun insert(post: CMessage)
 
     @Update
-    suspend fun update(lesson: CMessage)
+    suspend fun update(post: CMessage)
 
     @Delete
-    suspend fun delete(lesson: CMessage)
+    suspend fun delete(post: CMessage)
 }

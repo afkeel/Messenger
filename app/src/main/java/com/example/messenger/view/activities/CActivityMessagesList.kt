@@ -4,9 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.text.InputType
+import android.view.*
+import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
+import android.widget.EditText
+import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.messenger.R
@@ -27,43 +30,94 @@ class CActivityMessagesList : AppCompatActivity() {
 
     private lateinit var  binding : ActivityMessagesListBinding
     private lateinit var adapter : CRecyclerViewMessagesListAdapter
+    private lateinit var daoLessons: IDAOLessons
+    private var actionMode : ActionMode? = null
     private val messagesList = ArrayList<CMessage>()
     private val formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm")
-    private lateinit var daoLessons: IDAOLessons
-//    private var resultLauncher =
-//        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//            if (result.resultCode == Activity.RESULT_OK){
-//                val data: Intent? = result.data
-//                val res = data?.getIntExtra("PARAM_123", 0)
-//            }
-//        }
+    private lateinit var post : CMessage
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityMessagesListBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
-//        val listener = object : CRecyclerViewMessagesListAdapter
-//        .IClickListener {
-//            override fun onItemClick(lesson: CMessage, index: Int) {
-//                //Toast.makeText(this@CActivityLessonList, lesson.subject, Toast.LENGTH_SHORT).show()
-//                val intent = Intent(this@CActivityLessonList, CActivityLesson::class.java)
-//                intent.putExtra(getString(R.string.param_lesson_id), lesson.id.toString())
-//                resultLauncher.launch(intent)
-//            }
-//            override fun onItemDeleteClick(lesson: CMessage, index: Int) {
-//                lifecycleScope.launch {
-//                    daoLessons.delete(lesson)
-//                }
-//            }
-//        }
+        val actionModeCallback = object : ActionMode.Callback {
+            // Called when the action mode is created; startActionMode() was called
+            override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
+                // Inflate a menu resource providing context menu items
+                val inflater: MenuInflater = mode.menuInflater
+                inflater.inflate(R.menu.activity_messages_context_menu, menu)
+                return true
+            }
+            // Called each time the action mode is shown. Always called after onCreateActionMode, but
+            // may be called multiple times if the mode is invalidated.
+            override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
+                return false // Return false if nothing is done
+            }
+            // Called when the user selects a contextual menu item
+            override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
+                return when (item.itemId) {
+                    R.id.miContextEditMessage -> {
 
-        adapter = CRecyclerViewMessagesListAdapter(messagesList)
+                        binding.etEnterMessage.setText(post.msg)
+                        binding.etEnterMessage.requestFocus()
+
+                        val imm: InputMethodManager =
+                            getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                        imm.showSoftInput(binding.etEnterMessage, InputMethodManager.SHOW_IMPLICIT)
+
+//                        post.msg = binding.etEnterMessage.text.toString()
+//                        lifecycleScope.launch {
+//                            daoLessons.update(post)
+//                        }
+                        true
+                    }
+                    R.id.miContextDeleteMessage -> {
+                        lifecycleScope.launch {
+                            daoLessons.delete(post)
+                        }
+                        true
+                    }
+                    else -> false
+                }
+            }
+            // Called when the user exits the action mode
+            override fun onDestroyActionMode(mode: ActionMode) {
+                actionMode = null
+            }
+        }
+
+        val listener = object : CRecyclerViewMessagesListAdapter.IClickListener {
+            override fun onLongItemClick(v : View, post : CMessage) {
+                if(actionMode == null)
+                {
+                    actionMode = this@CActivityMessagesList.startActionMode(actionModeCallback)
+                    v.isSelected = true
+                }
+                this@CActivityMessagesList.post = post
+            }
+        }
+
+        adapter = CRecyclerViewMessagesListAdapter(messagesList, listener)
         binding.rvMessagesList.adapter = adapter
         binding.rvMessagesList.layoutManager = LinearLayoutManager(this)
+
+        val db = CDatabase.getDatabase(this)
+        daoLessons = db.daoLessons()
+        lifecycleScope.launch {
+            createInitialData(daoLessons)
+        }
+        lifecycleScope.launch{
+            daoLessons.getAllFlow().collect {
+                adapter.updateData(it)
+            }
+        }
+
         binding.bmNvgMessagesList.setOnItemSelectedListener { item ->
             when(item.itemId) {
-                R.id.bmiSendMessage -> {
+                R.id.miBottomSendMessage -> {
                     val msg = CMessage(
                         UUID.randomUUID(),
                         "UserName",
@@ -71,14 +125,11 @@ class CActivityMessagesList : AppCompatActivity() {
                         LocalDateTime.now()
                     )
                     lifecycleScope.launch {
-//                        val intent = Intent(this@CActivityMessagesList, CActivityLesson::class.java)
-//                        intent.putExtra(getString(R.string.param_lesson_id), lesson.id.toString())
-//                        resultLauncher.launch(intent)
                         daoLessons.insert(msg)
                     }
                     true
                 }
-                R.id.bmiExit -> {
+                R.id.miBottomExit -> {
                     val sharedPref = applicationContext
                         .getSharedPreferences(getString(R.string.file_name_preferences), Context.MODE_PRIVATE)
                     with (sharedPref.edit()) {
@@ -89,16 +140,6 @@ class CActivityMessagesList : AppCompatActivity() {
                     true
                 }
                 else -> false
-            }
-        }
-        val db = CDatabase.getDatabase(this)
-        daoLessons = db.daoLessons()
-        lifecycleScope.launch {
-            createInitialData(daoLessons)
-        }
-        lifecycleScope.launch{
-            daoLessons.getAllFlow().collect {
-                adapter.updateData(it)
             }
         }
     }

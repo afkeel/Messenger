@@ -6,12 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.activities.CActivityMessagesList">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMessagesList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/etEnterMessage"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/etEnterMessage"/>
     <EditText
         android:id="@+id/etEnterMessage"
         android:layout_width="match_parent"
@@ -27,5 +28,6 @@
         app:menu="@menu/activity_messages_list_bottom_menu"
         android:background="@color/primary"
         app:itemTextColor="@color/white"
-        app:itemIconTint="@color/white"/>
+        app:itemIconTint="@color/white">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.constraintlayout.widget.ConstraintLayout>
