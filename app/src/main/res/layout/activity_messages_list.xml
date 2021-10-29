@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.CActivityMessagesList">
+    tools:context=".view.activities.CActivityMessagesList"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMessagesList"
@@ -15,19 +17,19 @@
         app:layout_constraintBottom_toTopOf="@+id/etEnterMessage"/>
     <EditText
         android:id="@+id/etEnterMessage"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/hint_enter_message"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/bm_nvg_messages_list" />
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bm_nvg_messages_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/activity_messages_list_bottom_menu"
-        android:background="@color/primary"
-        app:itemTextColor="@color/white"
-        app:itemIconTint="@color/white">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:layout_constraintEnd_toStartOf="@+id/btnSend"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <ImageButton
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_send_24_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/primary"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

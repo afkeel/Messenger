@@ -1,5 +1,6 @@
 package com.example.messenger.view.adapters
 
+import android.graphics.Color
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.messenger.databinding.MessagesListItemBinding
@@ -17,9 +18,7 @@ class CRecyclerViewMessagesListAdapter(
      * (custom ViewHolder).
      */
     inner class ViewHolder(val binding: MessagesListItemBinding) : RecyclerView
-    .ViewHolder(binding.root) {
-        //var post : CMessage? = null
-    }
+    .ViewHolder(binding.root)
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
@@ -35,8 +34,8 @@ class CRecyclerViewMessagesListAdapter(
         viewHolder.binding.tvMsgContent.text = postList[position].msg
         viewHolder.binding.tvMsgDateTime.text = postList[position].dateTime.toString(formatter)
 
-        //viewHolder.msg = msgList[position]
         viewHolder.binding.rlMessage.setOnLongClickListener {
+            it.setBackgroundColor(Color.GRAY)
             listener?.onLongItemClick(it, postList[position])
             true
         }

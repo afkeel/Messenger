@@ -10,7 +10,6 @@
     <string name="exit">Выход</string>
     <string name="user_account">Профиль</string>
 
-    <string name="send_message">Отправить</string>
     <string name="hint_enter_message">Введите сообщение</string>
 
     <string name="edit_mesage">Изменить</string>

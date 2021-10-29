@@ -9,7 +9,6 @@
     <string name="exit">Exit</string>
     <string name="user_account">Account</string>
 
-    <string name="send_message">Send</string>
     <string name="hint_enter_message">Enter message</string>
 
     <string name="file_name_preferences" translatable="false">Preferences</string>
