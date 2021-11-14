@@ -6,12 +6,17 @@
     <string name="registration">Регистрация</string>
     <string name="hint_email">"Эл. почта"</string>
     <string name="hint_password">Пароль</string>
+    <string name="sign_in_error">Не верный логин или пароль!</string>
+    <string name="create_account_error">Не удалось зарегистрироваться!</string>
+    <string name="sign_in_empty_email">Введите E-mail!</string>
+    <string name="sign_in_empty_password">Введите пароль!</string>
 
     <string name="exit">Выход</string>
     <string name="user_account">Профиль</string>
 
     <string name="hint_enter_message">Введите сообщение</string>
 
-    <string name="edit_mesage">Изменить</string>
+    <string name="edit_message">Изменить</string>
     <string name="delete_message">Удалить</string>
+
 </resources>

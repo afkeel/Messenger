@@ -22,6 +22,7 @@ import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormat
 import java.util.*
 import android.graphics.Color
+import com.google.firebase.auth.FirebaseAuth
 
 
 class CActivityMessagesList : AppCompatActivity() {
@@ -45,7 +46,6 @@ class CActivityMessagesList : AppCompatActivity() {
         adapter = CRecyclerViewMessagesListAdapter(messagesList, listener)
         binding.rvMessagesList.adapter = adapter
         binding.rvMessagesList.layoutManager = LinearLayoutManager(this)
-
 
         val db = CDatabase.getDatabase(this)
         daoLessons = db.daoLessons()
@@ -179,14 +179,7 @@ class CActivityMessagesList : AppCompatActivity() {
                 true
             }
             R.id.miExit -> {
-                val sharedPref = applicationContext
-                    .getSharedPreferences(getString(R.string.file_name_preferences), Context.MODE_PRIVATE)
-                with (sharedPref.edit()) {
-                    putString(getString(R.string.param_login_key), "")
-                    apply()
-                }
-                startActivity(Intent(this, CActivitySignIn::class.java))
-                finish()
+                signOut()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -206,5 +199,10 @@ class CActivityMessagesList : AppCompatActivity() {
             }
             binding.etEnterMessage.text.clear()
         }
+    }
+    private fun signOut() {
+        FirebaseAuth.getInstance().signOut()
+        startActivity(Intent(this, CActivitySignIn::class.java))
+        finish()
     }
 }

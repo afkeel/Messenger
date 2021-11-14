@@ -5,6 +5,10 @@
     <string name="registration">Registration</string>
     <string name="hint_email">E-mail</string>
     <string name="hint_password">Password</string>
+    <string name="sign_in_error">Invalid username or password!</string>
+    <string name="create_account_error">Authentication failed!</string>
+    <string name="sign_in_empty_email">Enter E-mail!</string>
+    <string name="sign_in_empty_password">Enter password!</string>
 
     <string name="exit">Exit</string>
     <string name="user_account">Account</string>
@@ -14,6 +18,7 @@
     <string name="file_name_preferences" translatable="false">Preferences</string>
     <string name="param_login_key" translatable="false">LOGIN</string>
 
-    <string name="edit_mesage">Edit</string>
+    <string name="edit_message">Edit</string>
     <string name="delete_message">Delete</string>
+
 </resources>
